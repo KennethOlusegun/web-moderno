@@ -44,7 +44,7 @@ module.exports = app => {
                 }
             }
         } catch (e) {
-
+            console.log(e)
         }
 
         res.send(false)
