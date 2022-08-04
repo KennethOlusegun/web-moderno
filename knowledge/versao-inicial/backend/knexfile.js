@@ -1,15 +1,11 @@
 // Update with your config settings.
-
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
+const { db } = require('./.env')
+    /**
+     * @type { Object.<string, import("knex").Knex.Config> }
+     */
 module.exports = {
     client: 'postgresql',
-    connection: {
-        database: 'knowledge',
-        user: 'postgres',
-        password: 'U^NtRF4|^>?xs6|s'
-    },
+    connection: db,
     pool: {
         min: 2,
         max: 10
