@@ -36,10 +36,11 @@ module.exports = app => {
         delete user.confirmPassword
 
         if (user.id) {
+            console.log("Chegou no if")
             app.db('users')
                 .update(user)
                 .where({ id: user.id })
-                .whereNull('deletedAt')
+                // .whereNull('deletedAt') // Não usar agora
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
@@ -53,7 +54,7 @@ module.exports = app => {
     const get = (req, res) => {
         app.db('users')
             .select('id', 'name', 'email', 'admin')
-            .whereNull('deletedAt')
+            // .whereNull('deletedAt') // Não usar agora
             .then(users => res.json(users))
             .catch(err => res.status(500).send(err))
     }
@@ -63,7 +64,7 @@ module.exports = app => {
             .select('id', 'name', 'email', 'admin')
             .where({ id: req.params.id })
             .first()
-            .then(users => res.json(users))
+            .then(user => res.json(user))
             .catch(err => res.status(500).send(err))
     }
 

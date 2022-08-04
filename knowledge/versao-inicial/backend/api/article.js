@@ -1,11 +1,10 @@
 const queries = require('./queries')
-const querie = require('./queries')
 
 module.exports = app => {
     const { existsOrError } = app.api.validation
 
     const save = (req, res) => {
-        const article = {...req.body }
+        const article = { ...req.body }
         if (req.params.id) article.id = req.params.id
 
         try {
