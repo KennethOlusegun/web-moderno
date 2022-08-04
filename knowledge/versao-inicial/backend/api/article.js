@@ -1,4 +1,5 @@
 const queries = require('./queries')
+const querie = require('./queries')
 
 module.exports = app => {
     const { existsOrError } = app.api.validation
@@ -8,11 +9,11 @@ module.exports = app => {
         if (req.params.id) article.id = req.params.id
 
         try {
-            existsOrError(article.name, 'Nome não informado')
-            existsOrError(article.description, 'Descrição não informada')
-            existsOrError(article.categoryId, 'Categoria não informada')
-            existsOrError(article.userId, 'Autor não informado')
-            existsOrError(article.content, 'Conteúdo não informado')
+            existsOrError(article.name, 'Name not informed')
+            existsOrError(article.description, 'Description not informed')
+            existsOrError(article.categoryId, 'Name not informed')
+            existsOrError(article.userId, 'Author not informed')
+            existsOrError(article.content, 'Content not informed')
         } catch (msg) {
             res.status(400).send(msg)
         }
@@ -37,7 +38,7 @@ module.exports = app => {
                 .where({ id: req.params.id }).del()
 
             try {
-                existsOrError(rowsDeleted, 'Artigo não foi encontrado.')
+                existsOrError(rowsDeleted, 'Article not found.')
             } catch (msg) {
                 return res.status(400).send(msg)
             }
@@ -48,7 +49,7 @@ module.exports = app => {
         }
     }
 
-    const limit = 10 // usado para paginação
+    const limit = 10
     const get = async(req, res) => {
         const page = req.query.page || 1
 
