@@ -6,15 +6,20 @@
     <h1 class="title">
       {{ title }}
     </h1>
+    <UserDropDownVue v-if="!hideUserDropdown" />
   </header>
 </template>
 
 <script>
+import UserDropDownVue from "./UserDropDown.vue";
+
 export default {
   name: "Header",
+  components: { UserDropDownVue },
   props: {
     title: String,
     hideToggle: Boolean,
+    hideUserDropdown: Boolean,
   },
   computed: {
     icon() {
