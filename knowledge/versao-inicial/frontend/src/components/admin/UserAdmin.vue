@@ -1,5 +1,5 @@
 <template>
-  <div class="user-admin">
+  <div class="category-admin">
     <b-form>
       <input id="user-id" type="hidden" v-model="user.id" />
       <b-row>
