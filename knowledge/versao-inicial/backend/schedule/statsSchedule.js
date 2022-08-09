@@ -20,7 +20,7 @@ module.exports = app => {
 
         const changeUsers = !lastStat || stat.users !== lastStat.users
         const changeCategories = !lastStat || stat.categories !== lastStat.categories
-        const changeArticles = !lastStat || stat.categories !== lastStat.articles
+        const changeArticles = !lastStat || stat.articles !== lastStat.articles
 
         if (changeUsers || changeCategories || changeArticles) {
             stat.save().then(() => console.log('[Stats] Updated statistics!'))
