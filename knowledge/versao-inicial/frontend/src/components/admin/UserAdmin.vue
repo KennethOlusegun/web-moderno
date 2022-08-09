@@ -10,6 +10,7 @@
               type="text"
               v-model="user.name"
               required
+              :readonly="mode === 'remove'"
               placeholder="Please inform username!"
             ></b-form-input>
           </b-form-group>
@@ -21,15 +22,21 @@
               type="text"
               v-model="user.email"
               required
+              :readonly="mode === 'remove'"
               placeholder="Please inform the email!"
             ></b-form-input>
           </b-form-group>
         </b-col>
       </b-row>
-      <b-form-checkbox id="user-admin" v-model="user.admin" class="mt-3 mb-3">
+      <b-form-checkbox
+        id="user-admin"
+        v-show="mode === 'save'"
+        v-model="user.admin"
+        class="mt-3 mb-3"
+      >
         Administrator?
       </b-form-checkbox>
-      <b-row>
+      <b-row v-show="mode === 'save'">
         <b-col md="6" sm="12">
           <b-form-group label="Password:" label-for="user.password">
             <b-form-input
@@ -53,13 +60,17 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-button variant="primary" v-if="mode === 'save'" @click="save"
-        >Save</b-button
-      >
-      <b-button variant="danger" v-if="mode === 'remove'" @click="remove"
-        >Delete</b-button
-      >
-      <b-button class="ml-2" @click="reset">Cancel</b-button>
+      <b-row>
+        <b-col xs="12">
+          <b-button variant="primary" v-if="mode === 'save'" @click="save"
+            >Save</b-button
+          >
+          <b-button variant="danger" v-if="mode === 'remove'" @click="remove"
+            >Delete</b-button
+          >
+          <b-button class="ml-2" @click="reset">Cancel</b-button>
+        </b-col>
+      </b-row>
     </b-form>
     <hr />
     <b-table hover striped :items="users" :fields="fields">
