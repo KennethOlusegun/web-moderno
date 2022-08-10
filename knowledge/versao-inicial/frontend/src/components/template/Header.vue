@@ -6,16 +6,16 @@
     <h1 class="title">
       <router-link to="/">{{ title }}</router-link>
     </h1>
-    <UserDropDownVue v-if="!hideUserDropdown" />
+    <UserDropdown v-if="!hideUserDropdown" />
   </header>
 </template>
 
 <script>
-import UserDropDownVue from "./UserDropDown.vue";
+import UserDropdown from "./UserDropdown";
 
 export default {
   name: "Header",
-  components: { UserDropDownVue },
+  components: { UserDropdown },
   props: {
     title: String,
     hideToggle: Boolean,

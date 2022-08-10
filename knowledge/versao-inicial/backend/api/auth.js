@@ -2,15 +2,13 @@ const { authSecret } = require('../.env')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
 
-module.exports = app => {
+module.exports = (app) => {
     const signin = async(req, res) => {
         if (!req.body.email || !req.body.password) {
             return res.status(400).send('Enter username and password')
         }
 
-        const user = await app.db('users')
-            .where({ email: req.body.email })
-            .first()
+        const user = await app.db('users').where({ email: req.body.email }).first()
 
         if (!user) return res.status(400).send('User not found!')
 
@@ -25,12 +23,12 @@ module.exports = app => {
             email: user.email,
             admin: user.admin,
             iat: now,
-            exp: now + (60 * 60 * 24 * 3)
+            exp: now + 60 * 60 * 24 * 3,
         }
 
         res.json({
             ...payload,
-            token: jwt.encode(payload, authSecret)
+            token: jwt.encode(payload, authSecret),
         })
     }
 

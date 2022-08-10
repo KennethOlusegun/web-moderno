@@ -25,7 +25,7 @@ import PageTitle from "../template/PageTitle";
 import ArticleItem from "./ArticleItem";
 
 export default {
-  name: "ArticleByCategory",
+  name: "ArticlesByCategory",
   components: { PageTitle, ArticleItem },
   data: function () {
     return {
